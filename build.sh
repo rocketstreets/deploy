@@ -1,6 +1,7 @@
 #!/bin/sh
 
 docker login -u$DOCKER_USER --password $DOCKER_PWD
+cd ..
 echo "\n####################################Building Webapp####################################"
 docker build -f webapp/Dockerfile --tag webapp-v0.0.0 .
 echo "\n####################################Building Engine####################################"
