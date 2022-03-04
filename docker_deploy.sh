@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo docker login -u$DOCKER_USER --password $DOCKER_PWD
+sudo docker login -u $DOCKER_USER --password $DOCKER_PWD
 echo "\n####################################Creating Subnet####################################"
 sudo docker network create --subnet=172.0.0.1/16 rocketstreets_network
 
