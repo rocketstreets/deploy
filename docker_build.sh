@@ -1,13 +1,18 @@
 #!/bin/sh
 
 docker login -u$DOCKER_USER --password $DOCKER_PWD
-cd ..
 echo "\n####################################Building Webapp####################################"
-docker build -f webapp/Dockerfile --tag webapp-v0.0.0 .
+cd ../webapp
+docker build -f Dockerfile --tag webapp-v0.0.0 .
+
 echo "\n####################################Building Engine####################################"
-docker build -f engine/Dockerfile --tag engine-v0.0.0 .
+cd ../engine
+docker build -f Dockerfile --tag engine-v0.0.0 .
+
 echo "\n####################################Building Robin API####################################"
-docker build -f robin_api/Dockerfile --tag robin_api-v0.0.0 .
+cd ../robin_api
+docker build -f Dockerfile --tag robin_api-v0.0.0 .
+cd ..
 
 echo "\n####################################Creating Subnet####################################"
 docker network create --subnet=172.0.0.1/16 rocketstreets_network
