@@ -36,5 +36,6 @@ docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5
 
 echo "\n####################################Initializing DB####################################"
 docker exec engine python initialize_db.py
+docker exec engine python tickers.py
 
 echo "\n####################################Done####################################"

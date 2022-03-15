@@ -23,5 +23,6 @@ sudo docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5
 
 echo "\n####################################Initializing DB####################################"
 sudo docker exec engine python initialize_db.py
+sudo docker exec engine python tickers.py
 
 echo "\n####################################Done####################################"
