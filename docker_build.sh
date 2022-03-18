@@ -1,7 +1,6 @@
 #!/bin/sh
 
 echo "Building version: "$1
-docker login -u$DOCKER_USER --password $DOCKER_PWD
 echo "\n####################################Building Webapp####################################"
 cd ../webapp
 docker build -f Dockerfile --tag webapp-$1 .

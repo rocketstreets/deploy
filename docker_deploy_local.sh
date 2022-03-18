@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Deploying version: "$1
-docker login -u $DOCKER_USER --password $DOCKER_PWD
+
 echo "\n####################################Creating Subnet####################################"
 docker network create --subnet=172.0.0.1/16 rocketstreets_network
 
@@ -14,13 +14,13 @@ echo "\n####################################Starting Postgres###################
 docker run --name postgresql --net rocketstreets_network --ip 172.0.0.3 -p 5432:5432 -e POSTGRES_PASSWORD=rs -d postgres
 
 echo "\n####################################Starting Webapp####################################"
-docker run --name webapp --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 dwipam/rocketstreets:webapp-$1
+docker run --name webapp --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 webapp-$1
 
 echo "\n####################################Starting Robin API####################################"
-docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 dwipam/rocketstreets:robin_api-$1
+docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 robin_api-$1
 
 echo "\n####################################Starting Engine####################################"
-docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 dwipam/rocketstreets:engine-$1
+docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 engine-$1
 
 echo "\n####################################Initializing DB####################################"
 docker exec engine python initialize_db.py
