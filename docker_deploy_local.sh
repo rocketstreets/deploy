@@ -22,6 +22,9 @@ docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 500
 echo "\n####################################Starting Engine####################################"
 docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 engine-$1
 
+echo "\n####################################Starting Cron####################################"
+docker run --name cron --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 cron-$1
+
 echo "\n####################################Initializing DB####################################"
 docker exec engine python initialize_db.py
 docker exec engine python tickers.py
