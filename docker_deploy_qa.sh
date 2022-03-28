@@ -19,12 +19,6 @@ sudo docker run --name webapp --net rocketstreets_network --ip 172.0.0.4 -d -p 5
 echo "\n####################################Starting Robin API####################################"
 sudo docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 dwipam/rocketstreets:robin_api-$1
 
-echo "\n####################################Starting Engine(QA)####################################"
-sudo docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 dwipam/rocketstreets:engine-qa-$1
-
-echo "\n####################################Starting Cron####################################"
-sudo docker run --name cron --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 dwipam/rocketstreets:cron-$1
-
 echo "\n####################################Initializing DB####################################"
 sudo docker exec engine python populate_db.py
 sudo docker exec engine python tickers.py

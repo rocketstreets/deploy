@@ -16,9 +16,6 @@ docker run --name postgresql --net rocketstreets_network --ip 172.0.0.3 -p 5432:
 echo "\n####################################Starting Webapp####################################"
 docker run --name webapp --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 webapp-$1
 
-echo "\n####################################Starting Robin API####################################"
-docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 robin_api-$1
-
 echo "\n####################################Starting Engine(QA)####################################"
 docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 engine-qa-$1
 
