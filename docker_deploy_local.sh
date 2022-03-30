@@ -27,6 +27,6 @@ docker run --name cron --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:500
 
 echo "\n####################################Initializing DB####################################"
 docker exec engine python initialize_db.py
-docker exec engine python tickers.py
+docker exec engine python tickers.py sample
 
 echo "\n####################################Done####################################"
