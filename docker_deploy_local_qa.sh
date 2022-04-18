@@ -23,7 +23,7 @@ echo "\n####################################Starting Engine#####################
 docker run --name engine-qa --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 engine-qa-$1
 
 echo "\n####################################Starting News####################################"
-docker run --name news-qa --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 news-qa-$1
+docker run --name news-qa --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 news-qa-$1
 
 echo "\n####################################Starting Cron####################################"
 docker run --name cron-qa --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 cron-qa-$1

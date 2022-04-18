@@ -23,7 +23,7 @@ echo "\n####################################Starting Engine#####################
 sudo docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 dwipam/rocketstreets:engine-$1
 
 echo "\n####################################Starting News####################################"
-sudo docker run --name news --net rocketstreets_network --ip 172.0.0.7 -d -p 5003:5003 dwipam/rocketstreets:news-$1
+sudo docker run --name news --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 dwipam/rocketstreets:news-$1
 
 echo "\n####################################Starting Cron####################################"
 sudo docker run --name cron --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 dwipam/rocketstreets:cron-$1
