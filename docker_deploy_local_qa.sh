@@ -14,7 +14,7 @@ echo "\n####################################Starting Postgres###################
 docker run --name postgresql-qa --net rocketstreets_network --ip 172.0.0.3 -p 5432:5432 -e POSTGRES_PASSWORD=rs -d postgres
 
 echo "\n####################################Starting Webapp####################################"
-docker run --name webapp-qa --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 webapp-$1
+docker run --name webapp-qa --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 webapp-qa-$1
 
 echo "\n####################################Starting Robin (QA) API####################################"
 docker run --name robin_api-qa --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 robin_api-qa-$1
