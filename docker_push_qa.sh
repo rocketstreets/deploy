@@ -17,4 +17,7 @@ docker push dwipam/rocketstreets:cron-qa-$1
 docker tag robin_api-qa-$1 dwipam/rocketstreets:robin_api-qa-$1
 docker push dwipam/rocketstreets:robin_api-qa-$1
 
+docker tag notify-qa-$1 dwipam/rocketstreets:notify-qa-$1
+docker push dwipam/rocketstreets:notify-qa-$1
+
 echo "##############################Done######################"

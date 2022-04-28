@@ -20,16 +20,19 @@ echo "\n####################################Starting Robin API##################
 docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 robin_api-$1
 
 echo "\n####################################Starting Engine####################################"
-docker run --name engine --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 engine-$1
+docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 engine-$1
 
 echo "\n####################################Starting News####################################"
 docker run --name news --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 news-$1
+
+echo "\n####################################Starting Notify####################################"
+docker run --name notify --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.9 -d -p 5005:5005 notify-$1
 
 echo "\n####################################Initializing DB####################################"
 docker exec engine python initialize_db.py
 docker exec engine python tickers.py sample
 
 echo "\n####################################Starting Cron####################################"
-docker run --name cron --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 cron-$1
+docker run --name cron --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 cron-$1
 
 echo "\n####################################Done####################################"

@@ -12,8 +12,12 @@ docker build -f Dockerfile --tag engine-qa-$1 .
 echo "\n####################################Building Cron####################################"
 docker build -f Dockerfile_cron --tag cron-qa-$1 .
 
+echo "\n####################################Building Notify####################################"
+cd notification
+docker build -f Dockerfile --tag notify-qa-$1 .
+
 echo "\n####################################Building Robin API(QA)####################################"
-cd ../robinhood_faker
+cd ../../robinhood_faker
 docker build -f Dockerfile --tag robin_api-qa-$1 .
 
 echo "\n####################################Building News API####################################"

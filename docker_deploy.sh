@@ -25,11 +25,14 @@ sudo docker run --name engine --env SMTP_PWD=$SMTP_PWD --net rocketstreets_netwo
 echo "\n####################################Starting News####################################"
 sudo docker run --name news --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 dwipam/rocketstreets:news-$1
 
-echo "\n####################################Starting Cron####################################"
-sudo docker run --name cron --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 dwipam/rocketstreets:cron-$1
+echo "\n####################################Starting Notify####################################"
+sudo docker run --name notify --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.9 -d -p 5005:5005 notify-$1
 
 echo "\n####################################Initializing DB####################################"
 sudo docker exec engine python initialize_db.py
 sudo docker exec engine python tickers.py
+
+echo "\n####################################Starting Cron####################################"
+sudo docker run --name cron --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 dwipam/rocketstreets:cron-$1
 
 echo "\n####################################Done####################################"

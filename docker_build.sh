@@ -12,8 +12,12 @@ docker build -f Dockerfile --tag engine-$1 .
 echo "\n####################################Building Cron####################################"
 docker build -f Dockerfile_cron --tag cron-$1 .
 
+echo "\n####################################Building Notify####################################"
+cd notification
+docker build -f Dockerfile --tag notify-$1 .
+
 echo "\n####################################Building Robin API####################################"
-cd ../robin_api
+cd ../../robin_api
 docker build -f Dockerfile --tag robin_api-$1 .
 
 echo "\n####################################Building News API####################################"

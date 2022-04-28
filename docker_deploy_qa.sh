@@ -25,11 +25,15 @@ sudo docker run --name engine-qa --env SMTP_PWD=$SMTP_PWD --env IS_QA=True --net
 echo "\n####################################Starting News####################################"
 sudo docker run --name news-qa --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 dwipam/rocketstreets:news-qa-$1
 
-echo "\n####################################Starting Cron####################################"
-sudo docker run --name cron-qa --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 dwipam/rocketstreets:cron-qa-$1
+echo "\n####################################Starting Notify####################################"
+sudo docker run --name notify-qa --env IS_QA=True --net rocketstreets_network --ip 172.0.0.9 -d -p 5005:5005 notify-qa-$1
 
 echo "\n####################################Initializing DB####################################"
 sudo docker exec engine-qa python initialize_db.py
 sudo docker exec engine-qa python tickers.py sample
+
+echo "\n####################################Starting Cron####################################"
+sudo docker run --name cron-qa --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 dwipam/rocketstreets:cron-qa-$1
+
 
 echo "\n####################################Done####################################"
