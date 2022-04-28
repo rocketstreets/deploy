@@ -26,7 +26,7 @@ echo "\n####################################Starting News#######################
 docker run --name news-qa --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 news-qa-$1
 
 echo "\n####################################Starting Cron####################################"
-docker run --name cron-qa --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 cron-qa-$1
+docker run --name cron-qa --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 cron-qa-$1
 
 echo "\n####################################Initializing DB####################################"
 docker exec engine-qa python initialize_db.py
