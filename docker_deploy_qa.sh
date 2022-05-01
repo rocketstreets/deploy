@@ -23,10 +23,10 @@ echo "\n####################################Starting Engine#####################
 sudo docker run --name engine-qa --env TURN_OFF_OAUTH=True --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 dwipam/rocketstreets:engine-qa-$1
 
 echo "\n####################################Starting News####################################"
-sudo docker run --name news-qa --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 dwipam/rocketstreets:news-qa-$1
+sudo docker run --name news-qa --env TURN_OFF_OAUTH=True --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 dwipam/rocketstreets:news-qa-$1
 
 echo "\n####################################Starting Notify####################################"
-sudo docker run --name notify-qa --env IS_QA=True --net rocketstreets_network --ip 172.0.0.9 -d -p 5005:5005 notify-qa-$1
+sudo docker run --name notify-qa --env IS_QA=True --net rocketstreets_network --ip 172.0.0.9 -d -p 5005:5005 dwipam/rocketstreets:notify-qa-$1
 
 echo "\n####################################Initializing DB####################################"
 sudo docker exec engine-qa python initialize_db.py
