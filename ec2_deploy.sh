@@ -7,4 +7,4 @@ cd deploy
 export DOCKER_USER=$DOCKER_USER
 export DOCKER_PWD=$DOCKER_PWD
 export SMTP_PWD=$SMTP_PWD
-sh docker_deploy.sh v0.0.0
+sh docker_deploy_qa.sh v0.0.0
