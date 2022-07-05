@@ -35,8 +35,8 @@ echo "\n####################################Initializing DB#####################
 sudo docker exec engine-qa python initialize_db.py
 sudo docker exec engine-qa python tickers.py sample
 
-echo "\n####################################Starting Cron####################################"
-sudo docker run --name cron-qa --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 dwipam/rocketstreets:cron-qa-$1
+#echo "\n####################################Starting Cron####################################"
+#sudo docker run --name cron-qa --net rocketstreets_network --ip 172.0.0.7 -d -p 5004:5004 dwipam/rocketstreets:cron-qa-$1
 
 
 echo "\n####################################Done####################################"
