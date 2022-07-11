@@ -23,7 +23,7 @@ echo "\n####################################Starting Robin (QA) API#############
 sudo docker run --name robin_api-qa --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 dwipam/rocketstreets:robin_api-qa-$1
 
 echo "\n####################################Starting Engine####################################"
-sudo docker run --name engine-qa --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 dwipam/rocketstreets:engine-qa-$1
+sudo docker run --name engine-qa --env TURN_OFF_OAUTH=True --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 dwipam/rocketstreets:engine-qa-$1
 
 echo "\n####################################Starting News####################################"
 sudo docker run --name news-qa --env TURN_OFF_OAUTH=True --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 dwipam/rocketstreets:news-qa-$1
