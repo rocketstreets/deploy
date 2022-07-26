@@ -31,7 +31,7 @@ echo "\n####################################Starting News#######################
 sudo docker run --name news --net rocketstreets_network --env TURN_OFF_OAUTH=True --ip 172.0.0.8 -d -p 5003:5003 dwipam/rocketstreets:news-$1
 
 echo "\n####################################Starting Notify####################################"
-sudo docker run --name notify --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.9 -d -p 5005:5005 notify-$1
+sudo docker run --name notify --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.9 -d -p 5005:5005 dwipam/rocketstreets:notify-$1
 
 echo "\n####################################Initializing DB####################################"
 sudo docker exec engine python initialize_db.py
