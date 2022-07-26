@@ -17,11 +17,9 @@ echo "\n####################################Starting Webapp#####################
 docker run --name webapp-qa --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 webapp-qa-$1
 
 echo "\n####################################Starting Webapp_v2####################################"
-docker run --name webapp_v2-qa -e NEXTAUTH_URL=http://localhost:3000 \
-                              -e NEXTAUTH_SECRET=somereallysecretsecret\
-                               -e ROCKET_API_URL=http://localhost:5001\
-                                --net rocketstreets_network --ip 172.0.0.10 -d -p 3000:3000\
-                                 webapp_v2-qa-$1
+docker run --name webapp_v2 --net rocketstreets_network --ip 172.0.0.10 -e ROCKET_API_URL=http://172.0.0.6 \
+      -e ENGINE_PORT=5001 -e NEWS_ENGINE_PORT=5003 \
+       -d -p 3000:3000 webapp_v2-qa-$1
 
 echo "\n####################################Starting Robin (QA) API####################################"
 docker run --name robin_api-qa --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 robin_api-qa-$1

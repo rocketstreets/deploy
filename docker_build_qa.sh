@@ -5,9 +5,9 @@ echo "\n####################################Building Webapp#####################
 cd ../webapp
 docker build -f Dockerfile --tag webapp-qa-$1 .
 
-#echo "\n####################################Building Webapp_v2####################################"
-#cd ../webapp_v2
-#docker build -f Dockerfile --tag webapp_v2-qa-$1 .
+echo "\n####################################Building Webapp_v2####################################"
+cd ../webapp_v2
+docker build -f Dockerfile --tag webapp_v2-qa-$1 .
 
 echo "\n####################################Building Engine####################################"
 cd ../engine

@@ -17,16 +17,18 @@ echo "\n####################################Starting Webapp#####################
 docker run --name webapp --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 webapp-$1
 
 echo "\n####################################Starting Webapp_v2####################################"
-docker run --name webapp_v2 --net rocketstreets_network --ip 172.0.0.10 -d -p 3000:3000 webapp_v2-$1
+docker run --name webapp_v2 --net rocketstreets_network --ip 172.0.0.10 -e ROCKET_API_URL=http://localhost \
+      -e ENGINE_PORT=5001 -e NEWS_ENGINE_PORT=5003 \
+       -d -p 3000:3000 webapp_v2-$1
 
 echo "\n####################################Starting Robin API####################################"
 docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 robin_api-$1
 
 echo "\n####################################Starting Engine####################################"
-docker run --name engine --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 engine-$1
+docker run --name engine --env TURN_OFF_OAUTH=True --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 engine-$1
 
 echo "\n####################################Starting News####################################"
-docker run --name news --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 news-$1
+docker run --name news --env TURN_OFF_OAUTH=True --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 news-$1
 
 echo "\n####################################Starting Notify####################################"
 docker run --name notify --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.9 -d -p 5005:5005 notify-$1
