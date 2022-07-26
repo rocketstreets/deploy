@@ -25,10 +25,10 @@ echo "\n####################################Starting Robin API##################
 sudo docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 dwipam/rocketstreets:robin_api-$1
 
 echo "\n####################################Starting Engine####################################"
-sudo docker run --name engine --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 dwipam/rocketstreets:engine-$1
+sudo docker run --name engine --env SMTP_PWD=$SMTP_PWD --env TURN_OFF_OAUTH=True --net rocketstreets_network --ip 172.0.0.6 -d -p 5001:5001 dwipam/rocketstreets:engine-$1
 
 echo "\n####################################Starting News####################################"
-sudo docker run --name news --net rocketstreets_network --ip 172.0.0.8 -d -p 5003:5003 dwipam/rocketstreets:news-$1
+sudo docker run --name news --net rocketstreets_network --env TURN_OFF_OAUTH=True --ip 172.0.0.8 -d -p 5003:5003 dwipam/rocketstreets:news-$1
 
 echo "\n####################################Starting Notify####################################"
 sudo docker run --name notify --env SMTP_PWD=$SMTP_PWD --net rocketstreets_network --ip 172.0.0.9 -d -p 5005:5005 notify-$1
