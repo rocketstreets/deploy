@@ -17,7 +17,7 @@ echo "\n####################################Starting Webapp#####################
 docker run --name webapp --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 webapp-$1
 
 echo "\n####################################Starting Webapp_v2####################################"
-docker run --name webapp_v2 --net rocketstreets_network --ip 172.0.0.10 -e ROCKET_API_URL=http://44.204.133.11 \
+docker run --name webapp_v2 --net rocketstreets_network --ip 172.0.0.10 -e ROCKET_API_URL=http://3.238.152.49 \
       -e ENGINE_PORT=5001 -e NEWS_ENGINE_PORT=5003 \
        -d -p 3000:3000 webapp_v2-$1
 
