@@ -17,9 +17,11 @@ echo "\n####################################Starting Webapp#####################
 sudo docker run --name webapp-qa --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 dwipam/rocketstreets:webapp-qa-$1
 
 #echo "\n####################################Starting Webapp_v2####################################"
-#sudo docker run --name webapp_v2 --net rocketstreets_network -e ROCKET_API_URL=http://44.199.249.131 \
-      #      -e ENGINE_PORT=5001 -e NEWS_ENGINE_PORT=5003 \
-      #      --ip 172.0.0.10 -d -p 3000:3000 webapp_v2-qa-$1
+#sudo docker run --name webapp_v2  --net rocketstreets_network \
+#      -d -p 3000:3000 -e ENGINE_API_URL=http://3.238.152.49 \
+#      -e NEWS_API_URL=http://3.238.152.49 \
+#      -e ENGINE_PORT=5001 \
+#      -e NEWS_ENGINE_PORT=5003  webapp_v2-qa-$1
 
 echo "\n####################################Starting Robin (QA) API####################################"
 sudo docker run --name robin_api-qa --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 dwipam/rocketstreets:robin_api-qa-$1
