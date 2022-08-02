@@ -21,7 +21,7 @@ sudo docker run --name webapp_v2  --net rocketstreets_network \
             -d -p 3000:3000 -e ENGINE_API_URL=http://172.0.0.6 \
             -e NEWS_API_URL=http://172.0.0.8 \
             -e ENGINE_PORT=5001 \
-            -e NEWS_ENGINE_PORT=5003  webapp_v2-$1
+            -e NEWS_ENGINE_PORT=5003  dwipam/rocketstreets:webapp_v2-$1
 
 echo "\n####################################Starting Robin API####################################"
 sudo docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 dwipam/rocketstreets:robin_api-$1
