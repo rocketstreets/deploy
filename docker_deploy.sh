@@ -13,13 +13,15 @@ sudo docker run --net rocketstreets_network --ip 172.0.0.2 --tty -d \
 echo "\n####################################Starting Postgres####################################"
 sudo docker run --name postgresql --net rocketstreets_network --ip 172.0.0.3 -p 5432:5432 -e POSTGRES_PASSWORD=rs -d postgres
 
-echo "\n####################################Starting Webapp####################################"
-sudo docker run --name webapp --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 dwipam/rocketstreets:webapp-$1
+#echo "\n####################################Starting Webapp####################################"
+#sudo docker run --name webapp --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 dwipam/rocketstreets:webapp-$1
 
-#echo "\n####################################Starting Webapp_v2####################################"
-#sudo docker run --name webapp_v2 --net rocketstreets_network --ip 172.0.0.10 -e ROCKET_API_URL=http://44.204.133.11 \
-#      -e ENGINE_PORT=5001 -e NEWS_ENGINE_PORT=5003 \
-#       -d -p 3000:3000 webapp_v2-$1
+echo "\n####################################Starting Webapp_v2####################################"
+sudo docker run --name webapp_v2  --net rocketstreets_network \
+            -d -p 3000:3000 -e ENGINE_API_URL=http://localhost \
+            -e NEWS_API_URL=http://localhost \
+            -e ENGINE_PORT=5001 \
+            -e NEWS_ENGINE_PORT=5003  webapp_v2-$1
 
 echo "\n####################################Starting Robin API####################################"
 sudo docker run --name robin_api --net rocketstreets_network --ip 172.0.0.5 -d -p 5002:5002 dwipam/rocketstreets:robin_api-$1
