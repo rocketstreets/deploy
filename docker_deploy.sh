@@ -18,8 +18,8 @@ sudo docker run --name postgresql --net rocketstreets_network --ip 172.0.0.3 -p 
 
 echo "\n####################################Starting Webapp_v2####################################"
 sudo docker run --name webapp_v2  --net rocketstreets_network \
-            -d -p 3000:3000 -e ENGINE_API_URL=http://localhost \
-            -e NEWS_API_URL=http://localhost \
+            -d -p 3000:3000 -e ENGINE_API_URL=http://172.0.0.6 \
+            -e NEWS_API_URL=http://172.0.0.8 \
             -e ENGINE_PORT=5001 \
             -e NEWS_ENGINE_PORT=5003  webapp_v2-$1
 
