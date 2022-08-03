@@ -14,7 +14,7 @@ echo "\n####################################Starting Postgres###################
 sudo docker run --name postgresql-qa --net rocketstreets_network --ip 172.0.0.3 -p 5432:5432 -e POSTGRES_PASSWORD=rs -d postgres
 
 echo "\n####################################Starting Webapp####################################"
-sudo docker run --name webapp-qa --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:5000 dwipam/rocketstreets:webapp-qa-$1
+sudo docker run --name webapp-qa --net rocketstreets_network --ip 172.0.0.4 -d -p 5000:8080 dwipam/rocketstreets:webapp-qa-$1
 
 #echo "\n####################################Starting Webapp_v2####################################"
 #sudo docker run --name webapp_v2  --net rocketstreets_network \
